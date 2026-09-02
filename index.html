@@ -309,7 +309,7 @@
                 <label for="message">Комментарий (размеры, пожелания)</label>
                 <textarea id="message" name="message" rows="4" placeholder="Напишите, какая кухня вас интересует..."></textarea>
             </div>
-            <button type="submit" class="btn" onclick="prepareMessage()">Отправить заявку</button>
+            <button type="submit" class="btn">Отправить заявку</button>
         </form>
 
         <p class="form-note">Мы не передаём данные третьим лицам.</p>
@@ -341,11 +341,9 @@
 
     function addToCart(name, price) {
         let cart = getCart();
-        // Проверяем, есть ли уже такой товар (можно добавить количество, но пока просто добавляем)
         cart.push({ name, price });
         saveCart(cart);
         renderCart();
-        // Прокручиваем к корзине/форме
         document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -387,35 +385,43 @@
         totalEl.textContent = `Итого: ${total.toLocaleString()} ₽`;
     }
 
+    // ---- ПОДГОТОВКА КОММЕНТАРИЯ ПЕРЕД ОТПРАВКОЙ ----
     function prepareMessage() {
         const cart = getCart();
         const messageField = document.getElementById('message');
         if (cart.length > 0) {
             const names = cart.map(item => item.name).join(', ');
-            messageField.value = `Заказ товаров: ${names}`;
+            const userText = messageField.value.trim(); // сохраняем то, что написал пользователь
+            if (userText.length > 0) {
+                // Если пользователь что-то написал, добавляем список товаров с новой строки
+                messageField.value = userText + '\n\nЗаказ товаров: ' + names;
+            } else {
+                // Если поле пустое, просто пишем список
+                messageField.value = 'Заказ товаров: ' + names;
+            }
         }
-        // Если хотите добавить к этому и предыдущий комментарий, можно оставить как есть
+        // Если корзина пуста, ничего не меняем
+        return true;
     }
 
-    // ---- АВТОЗАПОЛНЕНИЕ ИЗ URL (для совместимости со старыми ссылками) ----
+    // ---- ОБРАБОТЧИК ОТПРАВКИ ФОРМЫ ----
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        prepareMessage();
+        // Форма отправится стандартным способом
+    });
+
+    // ---- АВТОЗАПОЛНЕНИЕ ИЗ URL (для совместимости) ----
     function getProductFromURL() {
         const params = new URLSearchParams(window.location.search);
         return params.get('product');
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Отображаем корзину при загрузке
         renderCart();
-
-        // Если есть параметр product в URL (например, со страницы товара), добавляем его в корзину
         const productName = getProductFromURL();
         if (productName) {
-            // Находим цену товара (можно сделать маппинг, но пока просто добавляем с ценой 0)
-            // В вашем случае лучше передавать и цену в URL, но для простоты добавим с ценой 0
-            // Мы можем улучшить это, передавая цену в параметре `&price=...`
-            // Но пока для демонстрации просто добавим с ценой 0 (можно потом доработать)
+            // Добавляем товар с ценой 0 (или можно доработать с распознаванием цены)
             addToCart(productName, 0);
-            // Убираем параметр из URL, чтобы не добавлялось повторно при обновлении
             window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
         }
     });
