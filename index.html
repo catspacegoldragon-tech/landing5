@@ -6,7 +6,7 @@
     <title>Кухни на заказ | CatSpace мебель</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Дополнительный стиль, чтобы кнопка-ссылка выглядела как кнопка */
+        /* Дополнительный стиль для кнопки-ссылки */
         .btn-order {
             display: inline-block;
             padding: 8px 20px;
@@ -27,9 +27,7 @@
 </head>
 <body>
 
-<!-- ============================================================ -->
 <!-- ====================== ШАПКА ================================ -->
-<!-- ============================================================ -->
 <header>
     <div class="container">
         <div class="logo">
@@ -70,10 +68,10 @@
                 </a>
                 <p class="price">от 15 000 ₽</p>
                 <p>Корпус ЛДСП, фасады МДФ, ТЕСТ ВИЗУАЛИЗАЦИИ.</p>
-                <a href="index.html#contact?product=Кухня%20АВИТО" class="btn-order">Заказать</a>
+                <a href="?product=Кухня%20АВИТО#contact" class="btn-order">Заказать</a>
             </div>
 
-            <!-- Товар 2: Модуль «Комфорт» -->
+            <!-- Товар 2: Модуль «Комфорт» (пока ссылка на product-1.html) -->
             <div class="product-card">
                 <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
                     <img src="images/kitchen_test.png" alt="Комфорт" onerror="this.src='https://placehold.co/300x200?text=Комфорт'">
@@ -81,7 +79,7 @@
                 </a>
                 <p class="price">от 120 000 ₽</p>
                 <p>Массив сосны, столешница 38 мм, подсветка.</p>
-                <a href="index.html#contact?product=Модуль%20Комфорт" class="btn-order">Заказать</a>
+                <a href="?product=Модуль%20Комфорт#contact" class="btn-order">Заказать</a>
             </div>
 
             <!-- Товар 3: Модуль «Премиум» -->
@@ -92,7 +90,7 @@
                 </a>
                 <p class="price">от 210 000 ₽</p>
                 <p>Шпонированный МДФ, фрезеровка, стекло, система хранения.</p>
-                <a href="index.html#contact?product=Модуль%20Премиум" class="btn-order">Заказать</a>
+                <a href="?product=Модуль%20Премиум#contact" class="btn-order">Заказать</a>
             </div>
 
             <!-- Товар 4: Модуль «Эконом» -->
@@ -103,7 +101,7 @@
                 </a>
                 <p class="price">от 55 000 ₽</p>
                 <p>Ламинированная ДСП, простые фасады, надёжная фурнитура.</p>
-                <a href="index.html#contact?product=Модуль%20Эконом" class="btn-order">Заказать</a>
+                <a href="?product=Модуль%20Эконом#contact" class="btn-order">Заказать</a>
             </div>
 
             <!-- Товар 5: Модуль «Лофт» -->
@@ -114,7 +112,7 @@
                 </a>
                 <p class="price">от 95 000 ₽</p>
                 <p>Стиль индустриальный, металлические вставки, грубая фактура.</p>
-                <a href="index.html#contact?product=Модуль%20Лофт" class="btn-order">Заказать</a>
+                <a href="?product=Модуль%20Лофт#contact" class="btn-order">Заказать</a>
             </div>
 
             <!-- Товар 6: Модуль «Кантри» -->
@@ -125,7 +123,7 @@
                 </a>
                 <p class="price">от 110 000 ₽</p>
                 <p>Натуральное дерево, состаренные фасады, кованые ручки.</p>
-                <a href="index.html#contact?product=Модуль%20Кантри" class="btn-order">Заказать</a>
+                <a href="?product=Модуль%20Кантри#contact" class="btn-order">Заказать</a>
             </div>
 
             <!-- Товар 7: Модуль «Минимал» -->
@@ -136,7 +134,7 @@
                 </a>
                 <p class="price">от 78 000 ₽</p>
                 <p>Гладкие фасады, скрытые ручки, современные материалы.</p>
-                <a href="index.html#contact?product=Модуль%20Минимал" class="btn-order">Заказать</a>
+                <a href="?product=Модуль%20Минимал#contact" class="btn-order">Заказать</a>
             </div>
 
             <!-- Товар 8: Модуль «Неоклассика» -->
@@ -147,7 +145,7 @@
                 </a>
                 <p class="price">от 160 000 ₽</p>
                 <p>Фрезеровка, патинирование, благородные оттенки.</p>
-                <a href="index.html#contact?product=Модуль%20Неоклассика" class="btn-order">Заказать</a>
+                <a href="?product=Модуль%20Неоклассика#contact" class="btn-order">Заказать</a>
             </div>
 
             <!-- Товар 9: Модуль «Хай-тек» -->
@@ -158,7 +156,7 @@
                 </a>
                 <p class="price">от 190 000 ₽</p>
                 <p>Глянец, алюминиевые профили, подсветка, умная фурнитура.</p>
-                <a href="index.html#contact?product=Модуль%20Хай-тек" class="btn-order">Заказать</a>
+                <a href="?product=Модуль%20Хай-тек#contact" class="btn-order">Заказать</a>
             </div>
 
         </div>
@@ -240,7 +238,8 @@
         <form action="https://formsubmit.co/catspacegoldragon@gmail.com" method="POST" class="contact-form">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="Новая заявка с лендинга CatSpace">
-            <input type="hidden" name="_next" value="https://catspacegoldragon-tech.github.io/landing5/thanks.html">
+            <!-- ПРАВИЛЬНАЯ ССЫЛКА НА thanks.html (относительная) -->
+            <input type="hidden" name="_next" value="thanks.html">
 
             <div class="form-group">
                 <label for="name">Ваше имя</label>
