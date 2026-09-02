@@ -65,8 +65,8 @@
                         <li>🔹 Цвет: на выбор из .... оттенков</li>
                     </ul>
                 </div>
-                <!-- ПРАВИЛЬНАЯ ССЫЛКА: параметр + якорь -->
-                <a href="index.html?product=Кухня%20АВИТО#contact" class="btn">Заказать</a>
+                <!-- КНОПКА ДОБАВЛЯЕТ В КОРЗИНУ И ПЕРЕХОДИТ НА ГЛАВНУЮ -->
+                <button class="btn" onclick="addToCartAndGo('Кухня «АВИТО»', 15000)">Добавить в заказ</button>
                 <br>
                 <a href="index.html" class="back-link">← Вернуться в каталог</a>
             </div>
@@ -88,6 +88,29 @@
         <p>Email: catspace@example.com | Тел: +7 (999) 123-45-67</p>
     </div>
 </footer>
+
+<script>
+    // ---- ФУНКЦИИ ДЛЯ РАБОТЫ С КОРЗИНОЙ (дублируем из index.html) ----
+    function getCart() {
+        try {
+            return JSON.parse(localStorage.getItem('cart')) || [];
+        } catch {
+            return [];
+        }
+    }
+
+    function saveCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function addToCartAndGo(name, price) {
+        let cart = getCart();
+        cart.push({ name, price });
+        saveCart(cart);
+        // Переходим на главную страницу с якорем #contact
+        window.location.href = 'index.html#contact';
+    }
+</script>
 
 </body>
 </html>
