@@ -73,9 +73,10 @@
 
 <div class="container">
 
-    <!-- БЛОК ПАРАМЕТРОВ -->
+    <!-- БЛОК ПАРАМЕТРОВ (расширенный) -->
     <div class="custom-form">
         <h3>Параметры кухни</h3>
+
         <div class="form-row">
             <div class="form-group">
                 <label>Тип кухни</label>
@@ -86,27 +87,54 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Ширина (мм)</label>
-                <input type="number" id="customWidth" placeholder="2000">
+                <label>Глубина нижних модулей (мм)</label>
+                <select id="depthBottom">
+                    <option value="460">460</option>
+                    <option value="510" selected>510</option>
+                </select>
             </div>
             <div class="form-group">
-                <label>Глубина (мм)</label>
-                <input type="number" id="customDepth" placeholder="600">
-            </div>
-            <div class="form-group">
-                <label>Высота (мм)</label>
-                <input type="number" id="customHeight" placeholder="850">
+                <label>Глубина верхних модулей (мм)</label>
+                <select id="depthTop">
+                    <option value="300">300</option>
+                    <option value="310">310</option>
+                    <option value="320">320</option>
+                    <option value="330">330</option>
+                    <option value="340">340</option>
+                    <option value="350" selected>350</option>
+                </select>
             </div>
         </div>
+
         <div class="form-row">
             <div class="form-group">
-                <label>Столешница</label>
-                <select id="customTabletop">
-                    <option value="ЛДСП">ЛДСП</option>
-                    <option value="искусственный камень">Искусственный камень</option>
-                    <option value="кварц">Кварц</option>
-                    <option value="дерево">Дерево</option>
+                <label>Высота нижних модулей (мм)</label>
+                <select id="heightBottom">
+                    <option value="720" selected>720</option>
+                    <option value="780">780</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label>Высота верхних модулей (мм)</label>
+                <select id="heightTop">
+                    <option value="720" selected>720</option>
+                    <option value="900">900</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Второй ряд шкафов (глубина, мм)</label>
+                <select id="secondRow">
+                    <option value="аналогично нижнему ряду">Аналогично нижнему ряду</option>
+                    <option value="550">550</option>
+                    <option value="580">580</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Ширина (мм)</label>
+                <input type="number" id="customWidth" placeholder="2000">
             </div>
             <div class="form-group">
                 <label>Цвет верха</label>
@@ -127,9 +155,21 @@
                 </select>
             </div>
         </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Столешница</label>
+                <select id="customTabletop">
+                    <option value="ЛДСП">ЛДСП</option>
+                    <option value="искусственный камень">Искусственный камень</option>
+                    <option value="кварц">Кварц</option>
+                    <option value="дерево">Дерево</option>
+                </select>
+            </div>
+        </div>
     </div>
 
-    <!-- ФОРМА ЗАЯВКИ -->
+    <!-- ФОРМА ЗАЯВКИ (без корзины, только форма) -->
     <section id="contact" class="contact">
         <h2>Оставить заявку</h2>
         <p>Укажите свои контакты, и мы подготовим для вас индивидуальное предложение</p>
@@ -171,16 +211,30 @@
     // ---- ПОДГОТОВКА КОММЕНТАРИЯ С ПАРАМЕТРАМИ ----
     function prepareMessage() {
         const type = document.getElementById('customType').value;
+        const depthBottom = document.getElementById('depthBottom').value;
+        const depthTop = document.getElementById('depthTop').value;
+        const heightBottom = document.getElementById('heightBottom').value;
+        const heightTop = document.getElementById('heightTop').value;
+        const secondRow = document.getElementById('secondRow').value;
         const width = document.getElementById('customWidth').value || 'не указано';
-        const depth = document.getElementById('customDepth').value || 'не указано';
-        const height = document.getElementById('customHeight').value || 'не указано';
-        const tabletop = document.getElementById('customTabletop').value;
         const colorTop = document.getElementById('customColorTop').value;
         const colorBottom = document.getElementById('customColorBottom').value;
+        const tabletop = document.getElementById('customTabletop').value;
 
         const messageField = document.getElementById('message');
         const userText = messageField.value.trim();
-        let params = `Тип: ${type}, Ширина: ${width} мм, Глубина: ${depth} мм, Высота: ${height} мм, Столешница: ${tabletop}, Цвет верха: ${colorTop}, Цвет низа: ${colorBottom}`;
+
+        let params = `Тип: ${type}\n` +
+                     `Глубина низа: ${depthBottom} мм\n` +
+                     `Глубина верха: ${depthTop} мм\n` +
+                     `Высота низа: ${heightBottom} мм\n` +
+                     `Высота верха: ${heightTop} мм\n` +
+                     `Второй ряд: ${secondRow} мм\n` +
+                     `Ширина: ${width} мм\n` +
+                     `Цвет верха: ${colorTop}\n` +
+                     `Цвет низа: ${colorBottom}\n` +
+                     `Столешница: ${tabletop}`;
+
         if (userText.length > 0) {
             messageField.value = userText + '\n\nПараметры кухни:\n' + params;
         } else {
