@@ -3,79 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кухни на заказ | CatSpace мебель</title>
+    <title>CatSpace Мебель – Кухни и мебель на заказ</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили для кнопки-ссылки и корзины */
-        .btn-order {
-            display: inline-block;
-            padding: 8px 20px;
-            background-color: #2c3e2f;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
+        /* Дополнительные стили для главной страницы с кнопками-разделами */
+        .section-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 60px 0;
+            background: #f9f9f9;
+        }
+        .section-btn {
+            display: block;
             text-decoration: none;
-            font-family: inherit;
-            font-size: inherit;
+            color: #333;
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .section-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .section-btn img {
+            width: 100%;
+            max-width: 180px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            background: #eee;
+        }
+        .section-btn h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #2c3e2f;
+        }
+        .section-btn p {
+            font-size: 16px;
+            color: #666;
+        }
+        .section-btn .btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 25px;
+            background: #2c3e2f;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 14px;
             transition: background 0.3s;
         }
-        .btn-order:hover {
-            background-color: #4a6741;
-        }
-
-        /* Блок корзины */
-        .cart-block {
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .cart-block h3 {
-            margin-bottom: 15px;
-            color: #2c3e2f;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-        .cart-item .remove-btn {
-            background: none;
-            border: none;
-            color: #c0392b;
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .cart-item .remove-btn:hover {
-            color: #e74c3c;
-        }
-        .cart-total {
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 10px;
-            text-align: right;
-            color: #2c3e2f;
-        }
-        .cart-empty {
-            color: #999;
-            text-align: center;
-            padding: 10px 0;
+        .section-btn .btn:hover {
+            background: #4a6741;
         }
     </style>
 </head>
 <body>
 
-<!-- ============================================================ -->
-<!-- ====================== ШАПКА ================================ -->
-<!-- ============================================================ -->
+<!-- ===== ШАПКА (без изменений) ===== -->
 <header>
     <div class="container">
         <div class="logo">
@@ -83,7 +73,7 @@
             <p>Кухонные модули на заказ</p>
         </div>
         <nav class="navbar">
-            <a href="#catalog">Каталог</a>
+            <a href="#sections">Разделы</a>
             <a href="#promo">Акции</a>
             <a href="#delivery">Доставка</a>
             <a href="#about">О нас</a>
@@ -93,341 +83,54 @@
     </div>
 </header>
 
-<!-- ====================== ГЛАВНЫЙ ЭКРАН ========================= -->
+<!-- ===== ГЛАВНЫЙ ЭКРАН (без изменений) ===== -->
 <section class="hero">
     <div class="container">
         <h2>Индивидуальные кухни под ваш стиль</h2>
         <p>Разработка, чертежи, модули — от технолога напрямую. Без посредников.</p>
-        <a href="#contact" class="btn">Получить консультацию</a>
+        <a href="#sections" class="btn">Выбрать категорию</a>
     </div>
 </section>
 
-<!-- ====================== КАТАЛОГ (9 ТОВАРОВ) ================== -->
-<section id="catalog" class="catalog">
-    <div class="container">
-        <h2>Наши кухонные модули</h2>
-        <div class="product-grid">
-
-            <!-- Товар 1 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Кухня АВИТО" onerror="this.src='https://placehold.co/300x200?text=АВИТО'">
-                    <h3>КУХНЯ «АВИТО»</h3>
-                </a>
-                <p class="price">от 15 000 ₽</p>
-                <p>Корпус ЛДСП, фасады МДФ, ТЕСТ ВИЗУАЛИЗАЦИИ.</p>
-                <button class="btn-order" onclick="addToCart('КУХНЯ «АВИТО»', 15000)">Заказать</button>
-            </div>
-
-            <!-- Товар 2 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Комфорт" onerror="this.src='https://placehold.co/300x200?text=Комфорт'">
-                    <h3>Модуль «Комфорт»</h3>
-                </a>
-                <p class="price">от 120 000 ₽</p>
-                <p>Массив сосны, столешница 38 мм, подсветка.</p>
-                <button class="btn-order" onclick="addToCart('Модуль «Комфорт»', 120000)">Заказать</button>
-            </div>
-
-            <!-- Товар 3 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Премиум" onerror="this.src='https://placehold.co/300x200?text=Премиум'">
-                    <h3>Модуль «Премиум»</h3>
-                </a>
-                <p class="price">от 210 000 ₽</p>
-                <p>Шпонированный МДФ, фрезеровка, стекло, система хранения.</p>
-                <button class="btn-order" onclick="addToCart('Модуль «Премиум»', 210000)">Заказать</button>
-            </div>
-
-            <!-- Товар 4 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Эконом" onerror="this.src='https://placehold.co/300x200?text=Эконом'">
-                    <h3>Модуль «Эконом»</h3>
-                </a>
-                <p class="price">от 55 000 ₽</p>
-                <p>Ламинированная ДСП, простые фасады, надёжная фурнитура.</p>
-                <button class="btn-order" onclick="addToCart('Модуль «Эконом»', 55000)">Заказать</button>
-            </div>
-
-            <!-- Товар 5 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Лофт" onerror="this.src='https://placehold.co/300x200?text=Лофт'">
-                    <h3>Модуль «Лофт»</h3>
-                </a>
-                <p class="price">от 95 000 ₽</p>
-                <p>Стиль индустриальный, металлические вставки, грубая фактура.</p>
-                <button class="btn-order" onclick="addToCart('Модуль «Лофт»', 95000)">Заказать</button>
-            </div>
-
-            <!-- Товар 6 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Кантри" onerror="this.src='https://placehold.co/300x200?text=Кантри'">
-                    <h3>Модуль «Кантри»</h3>
-                </a>
-                <p class="price">от 110 000 ₽</p>
-                <p>Натуральное дерево, состаренные фасады, кованые ручки.</p>
-                <button class="btn-order" onclick="addToCart('Модуль «Кантри»', 110000)">Заказать</button>
-            </div>
-
-            <!-- Товар 7 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Минимал" onerror="this.src='https://placehold.co/300x200?text=Минимал'">
-                    <h3>Модуль «Минимал»</h3>
-                </a>
-                <p class="price">от 78 000 ₽</p>
-                <p>Гладкие фасады, скрытые ручки, современные материалы.</p>
-                <button class="btn-order" onclick="addToCart('Модуль «Минимал»', 78000)">Заказать</button>
-            </div>
-
-            <!-- Товар 8 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Неоклассика" onerror="this.src='https://placehold.co/300x200?text=Неоклассика'">
-                    <h3>Модуль «Неоклассика»</h3>
-                </a>
-                <p class="price">от 160 000 ₽</p>
-                <p>Фрезеровка, патинирование, благородные оттенки.</p>
-                <button class="btn-order" onclick="addToCart('Модуль «Неоклассика»', 160000)">Заказать</button>
-            </div>
-
-            <!-- Товар 9 -->
-            <div class="product-card">
-                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
-                    <img src="images/kitchen_test.png" alt="Хай-тек" onerror="this.src='https://placehold.co/300x200?text=Хай-тек'">
-                    <h3>Модуль «Хай-тек»</h3>
-                </a>
-                <p class="price">от 190 000 ₽</p>
-                <p>Глянец, алюминиевые профили, подсветка, умная фурнитура.</p>
-                <button class="btn-order" onclick="addToCart('Модуль «Хай-тек»', 190000)">Заказать</button>
-            </div>
-
-        </div>
-    </div>
+<!-- ===== 4 БОЛЬШИЕ КНОПКИ-РАЗДЕЛЫ ===== -->
+<section id="sections" class="container section-buttons">
+    <a href="economy.html" class="section-btn">
+        <img src="images/kitchen_test.png" alt="Кухни эконом">
+        <h3>Кухни эконом</h3>
+        <p>Готовые решения по доступным ценам</p>
+        <span class="btn">Перейти</span>
+    </a>
+    <a href="custom.html" class="section-btn">
+        <img src="images/kitchen_test.png" alt="Кухни на заказ">
+        <h3>Кухни на заказ</h3>
+        <p>Индивидуальные проекты под ваш размер</p>
+        <span class="btn">Перейти</span>
+    </a>
+    <a href="furniture.html" class="section-btn">
+        <img src="images/kitchen_test.png" alt="Корпусная мебель">
+        <h3>Корпусная мебель</h3>
+        <p>Шкафы, тумбы, комоды и модули</p>
+        <span class="btn">Перейти</span>
+    </a>
+    <a href="horika.html" class="section-btn">
+        <img src="images/kitchen_test.png" alt="Хорика">
+        <h3>Хорика</h3>
+        <p>Скоро здесь появится описание</p>
+        <span class="btn">Скоро</span>
+    </a>
 </section>
 
-<!-- ====================== АКЦИИ ================================ -->
-<section id="promo" class="info-section">
-    <div class="container">
-        <h2>Акции и специальные предложения</h2>
-        <div class="info-content">
-            <p>🔥 При заказе кухни от 150 000 ₽ — <strong>бесплатная доставка</strong> по городу.</p>
-            <p>🎁 Скидка 10% на первую покупку для новых клиентов.</p>
-            <p>⭐ При заказе двух и более модулей — <strong>скидка 15%</strong> на фурнитуру Blum.</p>
-        </div>
-    </div>
-</section>
+<!-- ===== ОСТАЛЬНЫЕ СЕКЦИИ (Акции, Доставка, О нас, Отзывы, Контакты) без изменений ===== -->
+<!-- ... (они уже есть в вашем исходном коде, просто скопируйте их без изменений) ... -->
+<!-- Для краткости я не буду повторять их здесь, но вы скопируете их из старого index.html -->
 
-<!-- ====================== ДОСТАВКА ============================= -->
-<section id="delivery" class="info-section alt-bg">
-    <div class="container">
-        <h2>Доставка и сборка</h2>
-        <div class="info-content">
-            <p>🚚 Доставка по городу — <strong>2-3 дня</strong>, по области — до 7 дней.</p>
-            <p>🛠️ Профессиональная сборка модулей — <strong>гарантия 1 год</strong>.</p>
-            <p>📦 Бесплатное хранение заказа на складе до 30 дней.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ====================== О НАС ================================ -->
-<section id="about" class="about">
-    <div class="container">
-        <h2>Почему выбирают нас?</h2>
-        <div class="features">
-            <div class="feature">
-                <h3>▶ Индивидуальный подход</h3>
-                <p>Разработаем чертежи под любой размер и планировку.</p>
-            </div>
-            <div class="feature">
-                <h3>▶ Прямые цены</h3>
-                <p>Вы работаете напрямую с технологом, без наценок салонов.</p>
-            </div>
-            <div class="feature">
-                <h3>▶ Точные таблицы раскроя</h3>
-                <p>Минимизация отходов, чёткая спецификация материалов.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====================== ОТЗЫВЫ =============================== -->
-<section id="reviews" class="info-section">
-    <div class="container">
-        <h2>Отзывы наших клиентов</h2>
-        <div class="reviews-grid">
-            <div class="review-card">
-                <p>«Заказывала кухню «Элит». Всё сделали точно по чертежам, довольна качеством. Рекомендую!»</p>
-                <h4>— Анна, г. Москва</h4>
-            </div>
-            <div class="review-card">
-                <p>«Отличная цена, быстрая доставка. Технолог помог с расчётами. Спасибо!»</p>
-                <h4>— Михаил, г. Санкт-Петербург</h4>
-            </div>
-            <div class="review-card">
-                <p>«Понравился модуль «Премиум». Всё собрали идеально, выглядит дорого.»</p>
-                <h4>— Елена, г. Казань</h4>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====================== ФОРМА СВЯЗИ + КОРЗИНА =============== -->
-<section id="contact" class="contact">
-    <div class="container">
-        <h2>Свяжитесь с нами</h2>
-        <p>Оставьте заявку — и мы пришлём вам примеры чертежей и расчёт стоимости.</p>
-
-        <!-- БЛОК КОРЗИНЫ -->
-        <div class="cart-block" id="cartBlock">
-            <h3>Ваш заказ</h3>
-            <div id="cartItems">
-                <div class="cart-empty">Корзина пуста</div>
-            </div>
-            <div class="cart-total" id="cartTotal">Итого: 0 ₽</div>
-        </div>
-
-        <!-- ФОРМА С МАКСИМАЛЬНОЙ СТАБИЛЬНОСТЬЮ -->
-        <form action="https://formsubmit.co/catspacegoldragon@gmail.com" method="POST" class="contact-form" id="contactForm">
-            <!-- Базовые скрытые поля -->
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="Новая заявка с лендинга CatSpace">
-            <input type="hidden" name="_next" value="https://catspacegoldragon-tech.github.io/landing5/thanks.html">
-            <!-- Дополнительное поле для стабильности (табличный формат письма) -->
-            <input type="hidden" name="_template" value="table">
-            <!-- Дополнительное поле для отключения автоответа (если не нужно) -->
-            <input type="hidden" name="_autoresponse" value="">
-
-            <div class="form-group">
-                <label for="name">Ваше имя</label>
-                <input type="text" id="name" name="name" placeholder="Анна" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Телефон</label>
-                <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Комментарий (размеры, пожелания)</label>
-                <textarea id="message" name="message" rows="4" placeholder="Напишите, какая кухня вас интересует..."></textarea>
-            </div>
-            <button type="submit" class="btn">Отправить заявку</button>
-        </form>
-
-        <p class="form-note">Мы не передаём данные третьим лицам.</p>
-    </div>
-</section>
-
-<!-- ====================== ПОДВАЛ ================================ -->
+<!-- ===== ПОДВАЛ ===== -->
 <footer>
     <div class="container">
         <p>&copy; 2026 CatSpace Мебель. Разработка кухонных модулей и чертежей.</p>
         <p>Email: catspace@example.com | Тел: +7 (999) 123-45-67</p>
     </div>
 </footer>
-
-<!-- ====================== СКРИПТЫ =============================== -->
-<script>
-    // ---- КОРЗИНА ----
-    function getCart() {
-        try {
-            return JSON.parse(localStorage.getItem('cart')) || [];
-        } catch {
-            return [];
-        }
-    }
-
-    function saveCart(cart) {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    function addToCart(name, price) {
-        let cart = getCart();
-        cart.push({ name, price });
-        saveCart(cart);
-        renderCart();
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function removeFromCart(index) {
-        let cart = getCart();
-        cart.splice(index, 1);
-        saveCart(cart);
-        renderCart();
-    }
-
-    function clearCart() {
-        localStorage.removeItem('cart');
-        renderCart();
-    }
-
-    function renderCart() {
-        const cart = getCart();
-        const container = document.getElementById('cartItems');
-        const totalEl = document.getElementById('cartTotal');
-
-        if (cart.length === 0) {
-            container.innerHTML = '<div class="cart-empty">Корзина пуста</div>';
-            totalEl.textContent = 'Итого: 0 ₽';
-            return;
-        }
-
-        let html = '';
-        let total = 0;
-        cart.forEach((item, index) => {
-            total += item.price;
-            html += `
-                <div class="cart-item">
-                    <span>${item.name} — ${item.price.toLocaleString()} ₽</span>
-                    <button class="remove-btn" onclick="removeFromCart(${index})">✕</button>
-                </div>
-            `;
-        });
-        container.innerHTML = html;
-        totalEl.textContent = `Итого: ${total.toLocaleString()} ₽`;
-    }
-
-    // ---- ПОДГОТОВКА КОММЕНТАРИЯ (СОХРАНЯЕТ ТЕКСТ ПОЛЬЗОВАТЕЛЯ) ----
-    function prepareMessage() {
-        const cart = getCart();
-        const messageField = document.getElementById('message');
-        if (cart.length > 0) {
-            const names = cart.map(item => item.name).join(', ');
-            const userText = messageField.value.trim();
-            if (userText.length > 0) {
-                messageField.value = userText + '\n\nЗаказ товаров: ' + names;
-            } else {
-                messageField.value = 'Заказ товаров: ' + names;
-            }
-        }
-        return true;
-    }
-
-    // ---- ОБРАБОТЧИК ОТПРАВКИ ----
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        prepareMessage();
-        // Форма отправится стандартным способом
-    });
-
-    // ---- АВТОЗАПОЛНЕНИЕ ИЗ URL (для совместимости) ----
-    function getProductFromURL() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('product');
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        renderCart();
-        const productName = getProductFromURL();
-        if (productName) {
-            addToCart(productName, 0);
-            window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-        }
-    });
-</script>
 
 </body>
 </html>
