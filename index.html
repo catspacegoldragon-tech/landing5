@@ -6,7 +6,6 @@
     <title>CatSpace Мебель – Кухни и мебель на заказ</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили для кнопок-разделов */
         .section-buttons {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -61,11 +60,14 @@
         .section-btn .btn:hover {
             background: #4a6741;
         }
+        /* Отступ для якорных ссылок */
+        section[id] {
+            scroll-margin-top: 80px;
+        }
     </style>
 </head>
 <body>
 
-<!-- ====================== ШАПКА ================================ -->
 <header>
     <div class="container">
         <div class="logo">
@@ -83,7 +85,6 @@
     </div>
 </header>
 
-<!-- ====================== ГЛАВНЫЙ ЭКРАН ========================= -->
 <section class="hero">
     <div class="container">
         <h2>Индивидуальные кухни под ваш стиль</h2>
@@ -92,7 +93,6 @@
     </div>
 </section>
 
-<!-- ====================== 4 БОЛЬШИЕ КНОПКИ ====================== -->
 <section id="sections" class="container section-buttons">
     <a href="economy.html" class="section-btn">
         <img src="images/kitchen_test.png" alt="Кухни эконом">
@@ -120,7 +120,6 @@
     </a>
 </section>
 
-<!-- ====================== АКЦИИ ================================ -->
 <section id="promo" class="info-section">
     <div class="container">
         <h2>Акции и специальные предложения</h2>
@@ -132,7 +131,6 @@
     </div>
 </section>
 
-<!-- ====================== ДОСТАВКА ============================= -->
 <section id="delivery" class="info-section alt-bg">
     <div class="container">
         <h2>Доставка и сборка</h2>
@@ -144,7 +142,6 @@
     </div>
 </section>
 
-<!-- ====================== О НАС ================================ -->
 <section id="about" class="about">
     <div class="container">
         <h2>Почему выбирают нас?</h2>
@@ -165,7 +162,6 @@
     </div>
 </section>
 
-<!-- ====================== ОТЗЫВЫ =============================== -->
 <section id="reviews" class="info-section">
     <div class="container">
         <h2>Отзывы наших клиентов</h2>
@@ -186,18 +182,15 @@
     </div>
 </section>
 
-<!-- ====================== КОНТАКТЫ И ФОРМА ====================== -->
 <section id="contact" class="contact">
     <div class="container">
         <h2>Свяжитесь с нами</h2>
         <p>Оставьте заявку — и мы пришлём вам примеры чертежей и расчёт стоимости.</p>
-
         <form action="https://formsubmit.co/catspacegoldragon@gmail.com" method="POST" class="contact-form" id="contactForm">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="Новая заявка с лендинга CatSpace">
             <input type="hidden" name="_next" value="https://catspacegoldragon-tech.github.io/landing5/thanks.html">
             <input type="hidden" name="_template" value="table">
-
             <div class="form-group">
                 <label for="name">Ваше имя</label>
                 <input type="text" id="name" name="name" placeholder="Анна" required>
@@ -212,12 +205,10 @@
             </div>
             <button type="submit" class="btn">Отправить заявку</button>
         </form>
-
         <p class="form-note">Мы не передаём данные третьим лицам.</p>
     </div>
 </section>
 
-<!-- ====================== ПОДВАЛ ================================ -->
 <footer>
     <div class="container">
         <p>&copy; 2026 CatSpace Мебель. Разработка кухонных модулей и чертежей.</p>
