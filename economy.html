@@ -6,7 +6,7 @@
     <title>Кухни эконом | CatSpace Мебель</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили для фильтров, копия стилей корзины из index.html */
+        /* Стили для фильтров, корзины и кнопок (без изменений) */
         .filters {
             display: flex;
             flex-wrap: wrap;
@@ -94,6 +94,11 @@
         .back-link:hover {
             text-decoration: underline;
         }
+        /* Анимация для подсветки корзины (опционально) */
+        .cart-highlight {
+            border: 2px solid #d4b87a;
+            transition: border 0.3s;
+        }
     </style>
 </head>
 <body>
@@ -155,12 +160,10 @@
         <button class="btn" onclick="applyFilters()" style="align-self: flex-end;">Применить</button>
     </div>
 
-    <!-- КАТАЛОГ ТОВАРОВ (9 штук, как на старой главной) -->
-    <div id="productContainer" class="product-grid">
-        <!-- Товары будут вставлены через JavaScript -->
-    </div>
+    <!-- КАТАЛОГ ТОВАРОВ -->
+    <div id="productContainer" class="product-grid"></div>
 
-    <!-- КОРЗИНА -->
+    <!-- КОРЗИНА (с id для прокрутки) -->
     <div class="cart-block" id="cartBlock">
         <h3>Ваш заказ</h3>
         <div id="cartItems"><div class="cart-empty">Корзина пуста</div></div>
@@ -206,7 +209,7 @@
 </footer>
 
 <script>
-    // ---- ДАННЫЕ ТОВАРОВ (9 штук, как на старой главной) ----
+    // ---- ДАННЫЕ ТОВАРОВ ----
     const products = [
         { id: 1, name: 'КУХНЯ «АВИТО»', price: 15000, img: 'images/kitchen_test.png', colorTop: 'белый', colorBottom: 'серый', size: 'small' },
         { id: 2, name: 'Модуль «Комфорт»', price: 120000, img: 'images/kitchen_test.png', colorTop: 'дуб', colorBottom: 'венге', size: 'medium' },
@@ -219,7 +222,7 @@
         { id: 9, name: 'Модуль «Хай-тек»', price: 190000, img: 'images/kitchen_test.png', colorTop: 'серый', colorBottom: 'серый', size: 'large' }
     ];
 
-    // ---- ФУНКЦИИ КОРЗИНЫ (как раньше) ----
+    // ---- ФУНКЦИИ КОРЗИНЫ ----
     function getCart() {
         try { return JSON.parse(localStorage.getItem('cart')) || []; } catch { return []; }
     }
@@ -230,6 +233,12 @@
         cart.push({ name, price });
         saveCart(cart);
         renderCart();
+        // Плавная прокрутка к блоку корзины
+        document.getElementById('cartBlock').scrollIntoView({ behavior: 'smooth' });
+        // Добавляем подсветку на 2 секунды (опционально)
+        const cartBlock = document.getElementById('cartBlock');
+        cartBlock.classList.add('cart-highlight');
+        setTimeout(() => cartBlock.classList.remove('cart-highlight'), 1500);
     }
 
     function removeFromCart(index) {
@@ -293,17 +302,18 @@
         renderProducts(filtered);
     }
 
-    // ---- ПОДГОТОВКА КОММЕНТАРИЯ ПРИ ОТПРАВКЕ ----
+    // ---- ПОДГОТОВКА КОММЕНТАРИЯ (с ценами) ----
     function prepareMessage() {
         const cart = getCart();
         const messageField = document.getElementById('message');
         if (cart.length > 0) {
-            const names = cart.map(item => item.name).join(', ');
+            // Формируем строку с названиями и ценами
+            const items = cart.map(item => item.name + ' — ' + item.price.toLocaleString() + ' ₽').join(', ');
             const userText = messageField.value.trim();
             if (userText.length > 0) {
-                messageField.value = userText + '\n\nЗаказ товаров: ' + names;
+                messageField.value = userText + '\n\nЗаказ товаров: ' + items;
             } else {
-                messageField.value = 'Заказ товаров: ' + names;
+                messageField.value = 'Заказ товаров: ' + items;
             }
         }
         return true;
@@ -313,10 +323,9 @@
         prepareMessage();
     });
 
-    // ---- ЗАГРУЗКА ПРИ ОТКРЫТИИ СТРАНИЦЫ ----
+    // ---- ЗАГРУЗКА СТРАНИЦЫ ----
     window.onload = function() {
         renderCart();
-        // Изначально показываем все товары
         renderProducts(products);
     };
 </script>
