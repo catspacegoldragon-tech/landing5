@@ -65,7 +65,7 @@
                         <li>🔹 Цвет: на выбор из .... оттенков</li>
                     </ul>
                 </div>
-                <!-- КНОПКА ДОБАВЛЯЕТ В КОРЗИНУ И ПЕРЕХОДИТ НА ГЛАВНУЮ -->
+                <!-- ИСПРАВЛЕННАЯ КНОПКА: добавляет товар и переходит на economy.html#cartBlock -->
                 <button class="btn" onclick="addToCartAndGo('Кухня «АВИТО»', 15000)">Добавить в заказ</button>
                 <br>
                 <a href="index.html" class="back-link">← Вернуться в каталог</a>
@@ -90,7 +90,7 @@
 </footer>
 
 <script>
-    // ---- ФУНКЦИИ ДЛЯ РАБОТЫ С КОРЗИНОЙ (дублируем из index.html) ----
+    // ---- ФУНКЦИИ ДЛЯ РАБОТЫ С КОРЗИНОЙ (дублируем из economy.html) ----
     function getCart() {
         try {
             return JSON.parse(localStorage.getItem('cart')) || [];
@@ -103,12 +103,13 @@
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
+    // Добавляем товар и переходим на страницу "Кухни эконом" с якорем на корзину
     function addToCartAndGo(name, price) {
         let cart = getCart();
         cart.push({ name, price });
         saveCart(cart);
-        // Переходим на главную страницу с якорем #contact
-        window.location.href = 'index.html#contact';
+        // Переход на страницу economy.html с якорем #cartBlock
+        window.location.href = 'economy.html#cartBlock';
     }
 </script>
 
