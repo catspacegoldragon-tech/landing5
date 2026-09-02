@@ -6,7 +6,7 @@
     <title>Кухни эконом | CatSpace Мебель</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили для фильтров, корзины и кнопок (без изменений) */
+        /* Стили для фильтров, корзины и карточек */
         .filters {
             display: flex;
             flex-wrap: wrap;
@@ -94,10 +94,12 @@
         .back-link:hover {
             text-decoration: underline;
         }
-        /* Анимация для подсветки корзины (опционально) */
         .cart-highlight {
             border: 2px solid #d4b87a;
             transition: border 0.3s;
+        }
+        section[id] {
+            scroll-margin-top: 80px;
         }
     </style>
 </head>
@@ -163,14 +165,14 @@
     <!-- КАТАЛОГ ТОВАРОВ -->
     <div id="productContainer" class="product-grid"></div>
 
-    <!-- КОРЗИНА (с id для прокрутки) -->
+    <!-- КОРЗИНА -->
     <div class="cart-block" id="cartBlock">
         <h3>Ваш заказ</h3>
         <div id="cartItems"><div class="cart-empty">Корзина пуста</div></div>
         <div class="cart-total" id="cartTotal">Итого: 0 ₽</div>
     </div>
 
-    <!-- ФОРМА ЗАЯВКИ -->
+    <!-- ФОРМА ЗАЯВКИ (находится внизу этой же страницы) -->
     <section id="contact" class="contact">
         <h2>Оформить заказ</h2>
         <p>Заполните форму, и мы свяжемся с вами для уточнения деталей.</p>
@@ -178,7 +180,7 @@
         <form action="https://formsubmit.co/catspacegoldragon@gmail.com" method="POST" class="contact-form" id="contactForm">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="Заявка с кухонь эконом">
-            <input type="hidden" name="_next" value="https://catspacegoldragon-tech.github.io/landing5/thanks.html">
+            <input type="hidden" name="_next" value="thanks.html">
             <input type="hidden" name="_template" value="table">
 
             <div class="form-group">
@@ -209,7 +211,7 @@
 </footer>
 
 <script>
-    // ---- ДАННЫЕ ТОВАРОВ ----
+    // ---- ДАННЫЕ ТОВАРОВ (9 штук) ----
     const products = [
         { id: 1, name: 'КУХНЯ «АВИТО»', price: 15000, img: 'images/kitchen_test.png', colorTop: 'белый', colorBottom: 'серый', size: 'small' },
         { id: 2, name: 'Модуль «Комфорт»', price: 120000, img: 'images/kitchen_test.png', colorTop: 'дуб', colorBottom: 'венге', size: 'medium' },
@@ -228,14 +230,15 @@
     }
     function saveCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
 
+    // Добавление товара с прокруткой к корзине (на этой странице)
     function addToCart(name, price) {
         let cart = getCart();
         cart.push({ name, price });
         saveCart(cart);
         renderCart();
-        // Плавная прокрутка к блоку корзины
+        // Прокручиваем к блоку корзины на текущей странице
         document.getElementById('cartBlock').scrollIntoView({ behavior: 'smooth' });
-        // Добавляем подсветку на 2 секунды (опционально)
+        // Подсветка на 1.5 секунды
         const cartBlock = document.getElementById('cartBlock');
         cartBlock.classList.add('cart-highlight');
         setTimeout(() => cartBlock.classList.remove('cart-highlight'), 1500);
@@ -269,7 +272,7 @@
         totalEl.textContent = `Итого: ${total.toLocaleString()} ₽`;
     }
 
-    // ---- ОТОБРАЖЕНИЕ ТОВАРОВ С ФИЛЬТРАЦИЕЙ ----
+    // ---- ОТОБРАЖЕНИЕ ТОВАРОВ С ФИЛЬТРАМИ ----
     function renderProducts(filteredProducts) {
         const container = document.getElementById('productContainer');
         if (filteredProducts.length === 0) {
@@ -302,12 +305,11 @@
         renderProducts(filtered);
     }
 
-    // ---- ПОДГОТОВКА КОММЕНТАРИЯ (с ценами) ----
+    // ---- ПОДГОТОВКА КОММЕНТАРИЯ С ЦЕНАМИ ----
     function prepareMessage() {
         const cart = getCart();
         const messageField = document.getElementById('message');
         if (cart.length > 0) {
-            // Формируем строку с названиями и ценами
             const items = cart.map(item => item.name + ' — ' + item.price.toLocaleString() + ' ₽').join(', ');
             const userText = messageField.value.trim();
             if (userText.length > 0) {
