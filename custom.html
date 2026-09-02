@@ -6,34 +6,44 @@
     <title>Кухни на заказ | CatSpace Мебель</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .custom-form {
+        /* Стили для портфолио (копия из economy.html, но без кнопок) */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .product-card {
             background: white;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            padding-bottom: 20px;
+            transition: transform 0.2s;
         }
-        .custom-form .form-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px 30px;
-            margin-bottom: 20px;
+        .product-card:hover {
+            transform: translateY(-5px);
         }
-        .custom-form .form-group {
-            flex: 1 1 200px;
-        }
-        .custom-form .form-group label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-        .custom-form .form-group input,
-        .custom-form .form-group select {
+        .product-card img {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background-color: #f0f0f0;
+        }
+        .product-card h3 {
+            font-size: 22px;
+            margin: 15px 0 5px;
+        }
+        .product-card p {
+            padding: 0 15px 15px;
+            color: #666;
+        }
+        /* Ссылка-обёртка, чтобы вся карточка была кликабельной */
+        .product-card a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
         .back-link {
             display: inline-block;
@@ -43,8 +53,7 @@
             font-weight: bold;
         }
         .back-link:hover { text-decoration: underline; }
-
-        /* Отступ для якорных ссылок */
+        /* Отступ для якорей */
         section[id] {
             scroll-margin-top: 80px;
         }
@@ -72,118 +81,97 @@
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h2>Кухни на заказ</h2>
-        <p>Спроектируем кухню по вашим размерам и пожеланиям</p>
+        <p>Примеры наших работ – каждый проект уникален</p>
     </div>
 </section>
 
 <div class="container">
 
-    <!-- БЛОК ПАРАМЕТРОВ (расширенный) -->
-    <div class="custom-form">
-        <h3>Параметры кухни</h3>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Тип кухни</label>
-                <select id="customType">
-                    <option value="прямая">Прямая</option>
-                    <option value="угловая">Угловая</option>
-                    <option value="островная">Островная</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Глубина нижних модулей (мм)</label>
-                <select id="depthBottom">
-                    <option value="460">460</option>
-                    <option value="510" selected>510</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Глубина верхних модулей (мм)</label>
-                <select id="depthTop">
-                    <option value="300">300</option>
-                    <option value="310">310</option>
-                    <option value="320">320</option>
-                    <option value="330">330</option>
-                    <option value="340">340</option>
-                    <option value="350" selected>350</option>
-                </select>
-            </div>
+    <!-- СЕТКА ПОРТФОЛИО (9 карточек) -->
+    <div class="product-grid">
+        <!-- Карточка 1 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 1" onerror="this.src='https://placehold.co/300x200?text=Проект+1'">
+                <h3>Кухня «Авито»</h3>
+                <p>Современный стиль, эргономичное решение</p>
+            </a>
         </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Высота нижних модулей (мм)</label>
-                <select id="heightBottom">
-                    <option value="720" selected>720</option>
-                    <option value="780">780</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Высота верхних модулей (мм)</label>
-                <select id="heightTop">
-                    <option value="720" selected>720</option>
-                    <option value="900">900</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Второй ряд шкафов (глубина, мм)</label>
-                <select id="secondRow">
-                    <option value="отсутствует">Отсутствует</option>
-                    <option value="аналогично нижнему ряду">Аналогично нижнему ряду</option>
-                    <option value="550">550</option>
-                    <option value="580">580</option>
-                </select>
-            </div>
+        <!-- Карточка 2 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 2" onerror="this.src='https://placehold.co/300x200?text=Проект+2'">
+                <h3>Кухня «Комфорт»</h3>
+                <p>Классика с элементами модерна</p>
+            </a>
         </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Ширина (мм)</label>
-                <input type="number" id="customWidth" placeholder="2000">
-            </div>
-            <div class="form-group">
-                <label>Цвет верха</label>
-                <select id="customColorTop">
-                    <option value="белый">Белый</option>
-                    <option value="серый">Серый</option>
-                    <option value="дуб">Дуб</option>
-                    <option value="венге">Венге</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Цвет низа</label>
-                <select id="customColorBottom">
-                    <option value="белый">Белый</option>
-                    <option value="серый">Серый</option>
-                    <option value="дуб">Дуб</option>
-                    <option value="венге">Венге</option>
-                </select>
-            </div>
+        <!-- Карточка 3 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 3" onerror="this.src='https://placehold.co/300x200?text=Проект+3'">
+                <h3>Кухня «Премиум»</h3>
+                <p>Эксклюзивный дизайн, дорогие материалы</p>
+            </a>
         </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label>Столешница</label>
-                <select id="customTabletop">
-                    <option value="ЛДСП">ЛДСП</option>
-                    <option value="искусственный камень">Искусственный камень</option>
-                    <option value="кварц">Кварц</option>
-                    <option value="дерево">Дерево</option>
-                </select>
-            </div>
+        <!-- Карточка 4 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 4" onerror="this.src='https://placehold.co/300x200?text=Проект+4'">
+                <h3>Кухня «Лофт»</h3>
+                <p>Индустриальный стиль, открытые полки</p>
+            </a>
+        </div>
+        <!-- Карточка 5 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 5" onerror="this.src='https://placehold.co/300x200?text=Проект+5'">
+                <h3>Кухня «Кантри»</h3>
+                <p>Деревенский уют, натуральные материалы</p>
+            </a>
+        </div>
+        <!-- Карточка 6 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 6" onerror="this.src='https://placehold.co/300x200?text=Проект+6'">
+                <h3>Кухня «Минимал»</h3>
+                <p>Лаконичность, скрытые ручки, современные фасады</p>
+            </a>
+        </div>
+        <!-- Карточка 7 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 7" onerror="this.src='https://placehold.co/300x200?text=Проект+7'">
+                <h3>Кухня «Неоклассика»</h3>
+                <p>Благородные оттенки, фрезеровка, патинирование</p>
+            </a>
+        </div>
+        <!-- Карточка 8 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 8" onerror="this.src='https://placehold.co/300x200?text=Проект+8'">
+                <h3>Кухня «Хай-тек»</h3>
+                <p>Глянец, подсветка, умная фурнитура</p>
+            </a>
+        </div>
+        <!-- Карточка 9 -->
+        <div class="product-card">
+            <a href="product-1.html">
+                <img src="images/kitchen_test.png" alt="Проект 9" onerror="this.src='https://placehold.co/300x200?text=Проект+9'">
+                <h3>Кухня «Эксклюзив»</h3>
+                <p>Индивидуальный проект, любые размеры</p>
+            </a>
         </div>
     </div>
 
-    <!-- ФОРМА ЗАЯВКИ -->
+    <!-- ФОРМА ЗАЯВКИ (без параметров) -->
     <section id="contact" class="contact">
         <h2>Оставить заявку</h2>
-        <p>Укажите свои контакты, и мы подготовим для вас индивидуальное предложение</p>
+        <p>Опишите вашу идею, и мы свяжемся с вами для консультации</p>
 
         <form action="https://formsubmit.co/catspacegoldragon@gmail.com" method="POST" class="contact-form" id="contactForm">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="Заявка на кухню по индивидуальному заказу">
-            <input type="hidden" name="_next" value="https://catspacegoldragon-tech.github.io/landing5/thanks.html">
+            <input type="hidden" name="_subject" value="Заявка на индивидуальную кухню">
+            <input type="hidden" name="_next" value="thanks.html">
             <input type="hidden" name="_template" value="table">
 
             <div class="form-group">
@@ -195,8 +183,8 @@
                 <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
             </div>
             <div class="form-group">
-                <label for="message">Комментарий</label>
-                <textarea id="message" name="message" rows="4" placeholder="Дополнительные пожелания..."></textarea>
+                <label for="message">Ваш комментарий (размеры, пожелания)</label>
+                <textarea id="message" name="message" rows="4" placeholder="Напишите, что вы хотите..."></textarea>
             </div>
             <button type="submit" class="btn">Отправить заявку</button>
         </form>
@@ -213,43 +201,13 @@
     </div>
 </footer>
 
+<!-- СКРИПТ ДЛЯ ФОРМЫ (без параметров, просто отправка) -->
 <script>
-    function prepareMessage() {
-        const type = document.getElementById('customType').value;
-        const depthBottom = document.getElementById('depthBottom').value;
-        const depthTop = document.getElementById('depthTop').value;
-        const heightBottom = document.getElementById('heightBottom').value;
-        const heightTop = document.getElementById('heightTop').value;
-        const secondRow = document.getElementById('secondRow').value;
-        const width = document.getElementById('customWidth').value || 'не указано';
-        const colorTop = document.getElementById('customColorTop').value;
-        const colorBottom = document.getElementById('customColorBottom').value;
-        const tabletop = document.getElementById('customTabletop').value;
-
-        const messageField = document.getElementById('message');
-        const userText = messageField.value.trim();
-
-        let params = `Тип: ${type}\n` +
-                     `Глубина низа: ${depthBottom} мм\n` +
-                     `Глубина верха: ${depthTop} мм\n` +
-                     `Высота низа: ${heightBottom} мм\n` +
-                     `Высота верха: ${heightTop} мм\n` +
-                     `Второй ряд: ${secondRow}\n` +
-                     `Ширина: ${width} мм\n` +
-                     `Цвет верха: ${colorTop}\n` +
-                     `Цвет низа: ${colorBottom}\n` +
-                     `Столешница: ${tabletop}`;
-
-        if (userText.length > 0) {
-            messageField.value = userText + '\n\nПараметры кухни:\n' + params;
-        } else {
-            messageField.value = 'Параметры кухни:\n' + params;
-        }
-        return true;
-    }
-
+    // Можно добавить что-то, если нужно, но сейчас форма отправляется стандартно
+    // Для уверенности, что поле комментария не пустое, можно оставить как есть
     document.getElementById('contactForm').addEventListener('submit', function(e) {
-        prepareMessage();
+        // Если хотите, чтобы что-то добавлялось в комментарий – добавьте здесь
+        // Пока оставляем как есть
     });
 </script>
 
