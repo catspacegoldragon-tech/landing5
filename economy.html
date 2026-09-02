@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кухни эконом | CatSpace Мебель</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .filters select {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            min-width: 160px;
+        }
+        .filters label {
+            display: flex;
+            flex-direction: column;
+            font-weight: 500;
+            font-size: 14px;
+            color: #555;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .cart-block {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item .remove-btn {
+            background: none;
+            border: none;
+            color: #c0392b;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .cart-total {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: right;
+        }
+        .cart-empty {
+            color: #999;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .btn-order {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #2c3e2f;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: inherit;
+            transition: background 0.3s;
+        }
+        .btn-order:hover {
+            background-color: #4a6741;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2c3e2f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .cart-highlight { border: 2px solid #d4b87a; transition: border 0.3s; }
+        section[id] { scroll-margin-top: 80px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">
+            <!-- ИСПРАВЛЕННЫЙ ЛОГОТИП — ССЫЛКА НА ГЛАВНУЮ -->
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1>CatSpace Мебель</h1>
+            </a>
+            <p>Кухонные модули на заказ</p>
+        </div>
+        <nav class="navbar">
+            <a href="index.html">Главная</a>
+            <a href="index.html#promo">Акции</a>
+            <a href="index.html#delivery">Доставка</a>
+            <a href="index.html#about">О нас</a>
+            <a href="index.html#reviews">Отзывы</a>
+            <a href="#contact">Контакты</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero" style="padding: 60px 0;">
+    <div class="container">
+        <h2>Кухни эконом-класса</h2>
+        <p>Качественные кухонные модули по доступным ценам</p>
+    </div>
+</section>
+
+<div class="container">
+
+    <div class="filters">
+        <label>Цвет верха
+            <select id="filterColorTop">
+                <option value="all">Все</option>
+                <option value="белый">Белый</option>
+                <option value="серый">Серый</option>
+                <option value="дуб">Дуб</option>
+                <option value="венге">Венге</option>
+            </select>
+        </label>
+        <label>Цвет низа
+            <select id="filterColorBottom">
+                <option value="all">Все</option>
+                <option value="белый">Белый</option>
+                <option value="серый">Серый</option>
+                <option value="дуб">Дуб</option>
+                <option value="венге">Венге</option>
+            </select>
+        </label>
+        <label>Размер
+            <select id="filterSize">
+                <option value="all">Все</option>
+                <option value="small">Маленькая (до 2 м)</option>
+                <option value="medium">Средняя (2-3 м)</option>
+                <option value="large">Большая (от 3 м)</option>
+            </select>
+        </label>
+        <button class="btn" onclick="applyFilters()" style="align-self: flex-end;">Применить</button>
+    </div>
+
+    <div id="productContainer" class="product-grid"></div>
+
+    <div class="cart-block" id="cartBlock">
+        <h3>Ваш заказ</h3>
+        <div id="cartItems"><div class="cart-empty">Корзина пуста</div></div>
+        <div class="cart-total" id="cartTotal">Итого: 0 ₽</div>
+    </div>
+
+    <section id="contact" class="contact">
+        <h2>Оформить заказ</h2>
+        <p>Заполните форму, и мы свяжемся с вами для уточнения деталей.</p>
+
+        <form action="https://formsubmit.co/catspacegoldragon@gmail.com" method="POST" class="contact-form" id="contactForm">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Заявка с кухонь эконом">
+            <input type="hidden" name="_next" value="thanks.html">
+            <input type="hidden" name="_template" value="table">
+
+            <div class="form-group">
+                <label for="name">Ваше имя</label>
+                <input type="text" id="name" name="name" placeholder="Анна" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Телефон</label>
+                <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Комментарий (размеры, пожелания)</label>
+                <textarea id="message" name="message" rows="4" placeholder="Напишите, что вас интересует..."></textarea>
+            </div>
+            <button type="submit" class="btn">Отправить заявку</button>
+        </form>
+        <p class="form-note">Мы не передаём данные третьим лицам.</p>
+    </section>
+
+    <a href="index.html" class="back-link">← Вернуться на главную</a>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 CatSpace Мебель. Разработка кухонных модулей и чертежей.</p>
+        <p>Email: catspace@example.com | Тел: +7 (999) 123-45-67</p>
+    </div>
+</footer>
+
+<script>
+    const products = [
+        { id: 1, name: 'КУХНЯ «АВИТО»', price: 15000, img: 'images/kitchen_test.png', colorTop: 'белый', colorBottom: 'серый', size: 'small' },
+        { id: 2, name: 'Модуль «Комфорт»', price: 120000, img: 'images/kitchen_test.png', colorTop: 'дуб', colorBottom: 'венге', size: 'medium' },
+        { id: 3, name: 'Модуль «Премиум»', price: 210000, img: 'images/kitchen_test.png', colorTop: 'венге', colorBottom: 'венге', size: 'large' },
+        { id: 4, name: 'Модуль «Эконом»', price: 55000, img: 'images/kitchen_test.png', colorTop: 'белый', colorBottom: 'белый', size: 'small' },
+        { id: 5, name: 'Модуль «Лофт»', price: 95000, img: 'images/kitchen_test.png', colorTop: 'серый', colorBottom: 'серый', size: 'medium' },
+        { id: 6, name: 'Модуль «Кантри»', price: 110000, img: 'images/kitchen_test.png', colorTop: 'дуб', colorBottom: 'дуб', size: 'medium' },
+        { id: 7, name: 'Модуль «Минимал»', price: 78000, img: 'images/kitchen_test.png', colorTop: 'белый', colorBottom: 'белый', size: 'small' },
+        { id: 8, name: 'Модуль «Неоклассика»', price: 160000, img: 'images/kitchen_test.png', colorTop: 'венге', colorBottom: 'дуб', size: 'large' },
+        { id: 9, name: 'Модуль «Хай-тек»', price: 190000, img: 'images/kitchen_test.png', colorTop: 'серый', colorBottom: 'серый', size: 'large' }
+    ];
+
+    function getCart() {
+        try { return JSON.parse(localStorage.getItem('cart')) || []; } catch { return []; }
+    }
+    function saveCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
+
+    function addToCart(name, price) {
+        let cart = getCart();
+        cart.push({ name, price });
+        saveCart(cart);
+        renderCart();
+        document.getElementById('cartBlock').scrollIntoView({ behavior: 'smooth' });
+        const cartBlock = document.getElementById('cartBlock');
+        cartBlock.classList.add('cart-highlight');
+        setTimeout(() => cartBlock.classList.remove('cart-highlight'), 1500);
+    }
+
+    function removeFromCart(index) {
+        let cart = getCart();
+        cart.splice(index, 1);
+        saveCart(cart);
+        renderCart();
+    }
+
+    function renderCart() {
+        const cart = getCart();
+        const container = document.getElementById('cartItems');
+        const totalEl = document.getElementById('cartTotal');
+        if (cart.length === 0) {
+            container.innerHTML = '<div class="cart-empty">Корзина пуста</div>';
+            totalEl.textContent = 'Итого: 0 ₽';
+            return;
+        }
+        let html = '', total = 0;
+        cart.forEach((item, idx) => {
+            total += item.price;
+            html += `<div class="cart-item">
+                <span>${item.name} — ${item.price.toLocaleString()} ₽</span>
+                <button class="remove-btn" onclick="removeFromCart(${idx})">✕</button>
+            </div>`;
+        });
+        container.innerHTML = html;
+        totalEl.textContent = `Итого: ${total.toLocaleString()} ₽`;
+    }
+
+    function renderProducts(filteredProducts) {
+        const container = document.getElementById('productContainer');
+        if (filteredProducts.length === 0) {
+            container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Товаров не найдено</p>';
+            return;
+        }
+        container.innerHTML = filteredProducts.map(p => `
+            <div class="product-card">
+                <a href="product-1.html" style="display: block; text-decoration: none; color: inherit;">
+                    <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/300x200?text=${p.name}'">
+                    <h3>${p.name}</h3>
+                </a>
+                <p class="price">от ${p.price.toLocaleString()} ₽</p>
+                <p>Цвет верха: ${p.colorTop}, низа: ${p.colorBottom}</p>
+                <p>Размер: ${p.size === 'small' ? 'до 2 м' : p.size === 'medium' ? '2-3 м' : 'от 3 м'}</p>
+                <button class="btn-order" onclick="addToCart('${p.name}', ${p.price})">Заказать</button>
+            </div>
+        `).join('');
+    }
+
+    function applyFilters() {
+        const colorTop = document.getElementById('filterColorTop').value;
+        const colorBottom = document.getElementById('filterColorBottom').value;
+        const size = document.getElementById('filterSize').value;
+        const filtered = products.filter(p => {
+            return (colorTop === 'all' || p.colorTop === colorTop) &&
+                   (colorBottom === 'all' || p.colorBottom === colorBottom) &&
+                   (size === 'all' || p.size === size);
+        });
+        renderProducts(filtered);
+    }
+
+    function prepareMessage() {
+        const cart = getCart();
+        const messageField = document.getElementById('message');
+        if (cart.length > 0) {
+            const items = cart.map(item => item.name + ' — ' + item.price.toLocaleString() + ' ₽').join(', ');
+            const userText = messageField.value.trim();
+            if (userText.length > 0) {
+                messageField.value = userText + '\n\nЗаказ товаров: ' + items;
+            } else {
+                messageField.value = 'Заказ товаров: ' + items;
+            }
+        }
+        return true;
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        prepareMessage();
+    });
+
+    window.onload = function() {
+        renderCart();
+        renderProducts(products);
+    };
+</script>
+
+</body>
+</html>
