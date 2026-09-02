@@ -6,7 +6,6 @@
     <title>Кухни эконом | CatSpace Мебель</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили для фильтров, корзины и карточек */
         .filters {
             display: flex;
             flex-wrap: wrap;
@@ -91,16 +90,9 @@
             text-decoration: none;
             font-weight: bold;
         }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .cart-highlight {
-            border: 2px solid #d4b87a;
-            transition: border 0.3s;
-        }
-        section[id] {
-            scroll-margin-top: 80px;
-        }
+        .back-link:hover { text-decoration: underline; }
+        .cart-highlight { border: 2px solid #d4b87a; transition: border 0.3s; }
+        section[id] { scroll-margin-top: 80px; }
     </style>
 </head>
 <body>
@@ -108,7 +100,9 @@
 <header>
     <div class="container">
         <div class="logo">
-            <h1>CatSpace Мебель</h1>
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1>CatSpace Мебель</h1>
+            </a>
             <p>Кухонные модули на заказ</p>
         </div>
         <nav class="navbar">
@@ -131,7 +125,6 @@
 
 <div class="container">
 
-    <!-- ФИЛЬТРЫ -->
     <div class="filters">
         <label>Цвет верха
             <select id="filterColorTop">
@@ -162,17 +155,14 @@
         <button class="btn" onclick="applyFilters()" style="align-self: flex-end;">Применить</button>
     </div>
 
-    <!-- КАТАЛОГ ТОВАРОВ -->
     <div id="productContainer" class="product-grid"></div>
 
-    <!-- КОРЗИНА -->
     <div class="cart-block" id="cartBlock">
         <h3>Ваш заказ</h3>
         <div id="cartItems"><div class="cart-empty">Корзина пуста</div></div>
         <div class="cart-total" id="cartTotal">Итого: 0 ₽</div>
     </div>
 
-    <!-- ФОРМА ЗАЯВКИ (находится внизу этой же страницы) -->
     <section id="contact" class="contact">
         <h2>Оформить заказ</h2>
         <p>Заполните форму, и мы свяжемся с вами для уточнения деталей.</p>
@@ -211,7 +201,6 @@
 </footer>
 
 <script>
-    // ---- ДАННЫЕ ТОВАРОВ (9 штук) ----
     const products = [
         { id: 1, name: 'КУХНЯ «АВИТО»', price: 15000, img: 'images/kitchen_test.png', colorTop: 'белый', colorBottom: 'серый', size: 'small' },
         { id: 2, name: 'Модуль «Комфорт»', price: 120000, img: 'images/kitchen_test.png', colorTop: 'дуб', colorBottom: 'венге', size: 'medium' },
@@ -224,21 +213,17 @@
         { id: 9, name: 'Модуль «Хай-тек»', price: 190000, img: 'images/kitchen_test.png', colorTop: 'серый', colorBottom: 'серый', size: 'large' }
     ];
 
-    // ---- ФУНКЦИИ КОРЗИНЫ ----
     function getCart() {
         try { return JSON.parse(localStorage.getItem('cart')) || []; } catch { return []; }
     }
     function saveCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
 
-    // Добавление товара с прокруткой к корзине (на этой странице)
     function addToCart(name, price) {
         let cart = getCart();
         cart.push({ name, price });
         saveCart(cart);
         renderCart();
-        // Прокручиваем к блоку корзины на текущей странице
         document.getElementById('cartBlock').scrollIntoView({ behavior: 'smooth' });
-        // Подсветка на 1.5 секунды
         const cartBlock = document.getElementById('cartBlock');
         cartBlock.classList.add('cart-highlight');
         setTimeout(() => cartBlock.classList.remove('cart-highlight'), 1500);
@@ -272,7 +257,6 @@
         totalEl.textContent = `Итого: ${total.toLocaleString()} ₽`;
     }
 
-    // ---- ОТОБРАЖЕНИЕ ТОВАРОВ С ФИЛЬТРАМИ ----
     function renderProducts(filteredProducts) {
         const container = document.getElementById('productContainer');
         if (filteredProducts.length === 0) {
@@ -305,7 +289,6 @@
         renderProducts(filtered);
     }
 
-    // ---- ПОДГОТОВКА КОММЕНТАРИЯ С ЦЕНАМИ ----
     function prepareMessage() {
         const cart = getCart();
         const messageField = document.getElementById('message');
@@ -325,7 +308,6 @@
         prepareMessage();
     });
 
-    // ---- ЗАГРУЗКА СТРАНИЦЫ ----
     window.onload = function() {
         renderCart();
         renderProducts(products);
