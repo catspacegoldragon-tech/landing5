@@ -26,11 +26,12 @@
 </head>
 <body>
 
-<!-- ========== ШАПКА ========== -->
 <header>
     <div class="container">
         <div class="logo">
-            <h1>CatSpace Мебель</h1>
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1>CatSpace Мебель</h1>
+            </a>
             <p>Кухонные модули на заказ</p>
         </div>
         <nav class="navbar">
@@ -42,7 +43,6 @@
     </div>
 </header>
 
-<!-- ========== СТРАНИЦА ТОВАРА ========== -->
 <section class="product-page">
     <div class="container">
         <div class="product-main">
@@ -65,7 +65,6 @@
                         <li>🔹 Цвет: на выбор из .... оттенков</li>
                     </ul>
                 </div>
-                <!-- ИСПРАВЛЕННАЯ КНОПКА: добавляет товар и переходит на economy.html#cartBlock -->
                 <button class="btn" onclick="addToCartAndGo('Кухня «АВИТО»', 15000)">Добавить в заказ</button>
                 <br>
                 <a href="index.html" class="back-link">← Вернуться в каталог</a>
@@ -81,7 +80,6 @@
     </div>
 </section>
 
-<!-- ========== ПОДВАЛ ========== -->
 <footer>
     <div class="container">
         <p>&copy; 2026 CatSpace Мебель. Разработка кухонных модулей и чертежей.</p>
@@ -90,25 +88,15 @@
 </footer>
 
 <script>
-    // ---- ФУНКЦИИ ДЛЯ РАБОТЫ С КОРЗИНОЙ (дублируем из economy.html) ----
     function getCart() {
-        try {
-            return JSON.parse(localStorage.getItem('cart')) || [];
-        } catch {
-            return [];
-        }
+        try { return JSON.parse(localStorage.getItem('cart')) || []; } catch { return []; }
     }
+    function saveCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
 
-    function saveCart(cart) {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    // Добавляем товар и переходим на страницу "Кухни эконом" с якорем на корзину
     function addToCartAndGo(name, price) {
         let cart = getCart();
         cart.push({ name, price });
         saveCart(cart);
-        // Переход на страницу economy.html с якорем #cartBlock
         window.location.href = 'economy.html#cartBlock';
     }
 </script>
