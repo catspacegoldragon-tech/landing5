@@ -43,6 +43,11 @@
             font-weight: bold;
         }
         .back-link:hover { text-decoration: underline; }
+
+        /* Отступ для якорных ссылок */
+        section[id] {
+            scroll-margin-top: 80px;
+        }
     </style>
 </head>
 <body>
@@ -124,6 +129,7 @@
             <div class="form-group">
                 <label>Второй ряд шкафов (глубина, мм)</label>
                 <select id="secondRow">
+                    <option value="отсутствует">Отсутствует</option>
                     <option value="аналогично нижнему ряду">Аналогично нижнему ряду</option>
                     <option value="550">550</option>
                     <option value="580">580</option>
@@ -169,7 +175,7 @@
         </div>
     </div>
 
-    <!-- ФОРМА ЗАЯВКИ (без корзины, только форма) -->
+    <!-- ФОРМА ЗАЯВКИ -->
     <section id="contact" class="contact">
         <h2>Оставить заявку</h2>
         <p>Укажите свои контакты, и мы подготовим для вас индивидуальное предложение</p>
@@ -208,7 +214,6 @@
 </footer>
 
 <script>
-    // ---- ПОДГОТОВКА КОММЕНТАРИЯ С ПАРАМЕТРАМИ ----
     function prepareMessage() {
         const type = document.getElementById('customType').value;
         const depthBottom = document.getElementById('depthBottom').value;
@@ -229,7 +234,7 @@
                      `Глубина верха: ${depthTop} мм\n` +
                      `Высота низа: ${heightBottom} мм\n` +
                      `Высота верха: ${heightTop} мм\n` +
-                     `Второй ряд: ${secondRow} мм\n` +
+                     `Второй ряд: ${secondRow}\n` +
                      `Ширина: ${width} мм\n` +
                      `Цвет верха: ${colorTop}\n` +
                      `Цвет низа: ${colorBottom}\n` +
