@@ -292,10 +292,16 @@
             <div class="cart-total" id="cartTotal">Итого: 0 ₽</div>
         </div>
 
+        <!-- ФОРМА С МАКСИМАЛЬНОЙ СТАБИЛЬНОСТЬЮ -->
         <form action="https://formsubmit.co/catspacegoldragon@gmail.com" method="POST" class="contact-form" id="contactForm">
+            <!-- Базовые скрытые поля -->
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="Новая заявка с лендинга CatSpace">
             <input type="hidden" name="_next" value="https://catspacegoldragon-tech.github.io/landing5/thanks.html">
+            <!-- Дополнительное поле для стабильности (табличный формат письма) -->
+            <input type="hidden" name="_template" value="table">
+            <!-- Дополнительное поле для отключения автоответа (если не нужно) -->
+            <input type="hidden" name="_autoresponse" value="">
 
             <div class="form-group">
                 <label for="name">Ваше имя</label>
@@ -385,26 +391,23 @@
         totalEl.textContent = `Итого: ${total.toLocaleString()} ₽`;
     }
 
-    // ---- ПОДГОТОВКА КОММЕНТАРИЯ ПЕРЕД ОТПРАВКОЙ ----
+    // ---- ПОДГОТОВКА КОММЕНТАРИЯ (СОХРАНЯЕТ ТЕКСТ ПОЛЬЗОВАТЕЛЯ) ----
     function prepareMessage() {
         const cart = getCart();
         const messageField = document.getElementById('message');
         if (cart.length > 0) {
             const names = cart.map(item => item.name).join(', ');
-            const userText = messageField.value.trim(); // сохраняем то, что написал пользователь
+            const userText = messageField.value.trim();
             if (userText.length > 0) {
-                // Если пользователь что-то написал, добавляем список товаров с новой строки
                 messageField.value = userText + '\n\nЗаказ товаров: ' + names;
             } else {
-                // Если поле пустое, просто пишем список
                 messageField.value = 'Заказ товаров: ' + names;
             }
         }
-        // Если корзина пуста, ничего не меняем
         return true;
     }
 
-    // ---- ОБРАБОТЧИК ОТПРАВКИ ФОРМЫ ----
+    // ---- ОБРАБОТЧИК ОТПРАВКИ ----
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         prepareMessage();
         // Форма отправится стандартным способом
@@ -420,7 +423,6 @@
         renderCart();
         const productName = getProductFromURL();
         if (productName) {
-            // Добавляем товар с ценой 0 (или можно доработать с распознаванием цены)
             addToCart(productName, 0);
             window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
         }
