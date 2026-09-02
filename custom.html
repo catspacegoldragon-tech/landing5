@@ -6,7 +6,6 @@
     <title>Кухни на заказ | CatSpace Мебель</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Стили для портфолио (копия из economy.html, но без кнопок) */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -22,9 +21,7 @@
             padding-bottom: 20px;
             transition: transform 0.2s;
         }
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
+        .product-card:hover { transform: translateY(-5px); }
         .product-card img {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -39,7 +36,6 @@
             padding: 0 15px 15px;
             color: #666;
         }
-        /* Ссылка-обёртка, чтобы вся карточка была кликабельной */
         .product-card a {
             display: block;
             text-decoration: none;
@@ -53,10 +49,7 @@
             font-weight: bold;
         }
         .back-link:hover { text-decoration: underline; }
-        /* Отступ для якорей */
-        section[id] {
-            scroll-margin-top: 80px;
-        }
+        section[id] { scroll-margin-top: 80px; }
     </style>
 </head>
 <body>
@@ -64,7 +57,9 @@
 <header>
     <div class="container">
         <div class="logo">
-            <h1>CatSpace Мебель</h1>
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <h1>CatSpace Мебель</h1>
+            </a>
             <p>Кухонные модули на заказ</p>
         </div>
         <nav class="navbar">
@@ -87,9 +82,7 @@
 
 <div class="container">
 
-    <!-- СЕТКА ПОРТФОЛИО (9 карточек) -->
     <div class="product-grid">
-        <!-- Карточка 1 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 1" onerror="this.src='https://placehold.co/300x200?text=Проект+1'">
@@ -97,7 +90,6 @@
                 <p>Современный стиль, эргономичное решение</p>
             </a>
         </div>
-        <!-- Карточка 2 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 2" onerror="this.src='https://placehold.co/300x200?text=Проект+2'">
@@ -105,7 +97,6 @@
                 <p>Классика с элементами модерна</p>
             </a>
         </div>
-        <!-- Карточка 3 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 3" onerror="this.src='https://placehold.co/300x200?text=Проект+3'">
@@ -113,7 +104,6 @@
                 <p>Эксклюзивный дизайн, дорогие материалы</p>
             </a>
         </div>
-        <!-- Карточка 4 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 4" onerror="this.src='https://placehold.co/300x200?text=Проект+4'">
@@ -121,7 +111,6 @@
                 <p>Индустриальный стиль, открытые полки</p>
             </a>
         </div>
-        <!-- Карточка 5 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 5" onerror="this.src='https://placehold.co/300x200?text=Проект+5'">
@@ -129,7 +118,6 @@
                 <p>Деревенский уют, натуральные материалы</p>
             </a>
         </div>
-        <!-- Карточка 6 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 6" onerror="this.src='https://placehold.co/300x200?text=Проект+6'">
@@ -137,7 +125,6 @@
                 <p>Лаконичность, скрытые ручки, современные фасады</p>
             </a>
         </div>
-        <!-- Карточка 7 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 7" onerror="this.src='https://placehold.co/300x200?text=Проект+7'">
@@ -145,7 +132,6 @@
                 <p>Благородные оттенки, фрезеровка, патинирование</p>
             </a>
         </div>
-        <!-- Карточка 8 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 8" onerror="this.src='https://placehold.co/300x200?text=Проект+8'">
@@ -153,7 +139,6 @@
                 <p>Глянец, подсветка, умная фурнитура</p>
             </a>
         </div>
-        <!-- Карточка 9 -->
         <div class="product-card">
             <a href="product-1.html">
                 <img src="images/kitchen_test.png" alt="Проект 9" onerror="this.src='https://placehold.co/300x200?text=Проект+9'">
@@ -163,7 +148,6 @@
         </div>
     </div>
 
-    <!-- ФОРМА ЗАЯВКИ (без параметров) -->
     <section id="contact" class="contact">
         <h2>Оставить заявку</h2>
         <p>Опишите вашу идею, и мы свяжемся с вами для консультации</p>
@@ -201,13 +185,9 @@
     </div>
 </footer>
 
-<!-- СКРИПТ ДЛЯ ФОРМЫ (без параметров, просто отправка) -->
 <script>
-    // Можно добавить что-то, если нужно, но сейчас форма отправляется стандартно
-    // Для уверенности, что поле комментария не пустое, можно оставить как есть
     document.getElementById('contactForm').addEventListener('submit', function(e) {
-        // Если хотите, чтобы что-то добавлялось в комментарий – добавьте здесь
-        // Пока оставляем как есть
+        // Можно оставить пустым, либо добавить логику, если нужно
     });
 </script>
 
